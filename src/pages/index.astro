@@ -1,0 +1,35 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const posts = (await getCollection('blog'))
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+const base = import.meta.env.BASE_URL;
+---
+
+<BaseLayout title="Astro学習ノート" description="Astroを学びながら作っている個人サイト">
+  <h1>Astro学習ノート</h1>
+  <p>
+    Astroの勉強を兼ねて作っているサイトです。コンポーネント、レイアウト、
+    Content Collections、GitHub Pagesへのデプロイなどを試しています。
+  </p>
+
+  <h2>最近の記事</h2>
+  <ul class="post-list">
+    {
+      posts.map((post) => (
+        <li>
+          <h2>
+            <a href={`${base}blog/${post.id}/`}>{post.data.title}</a>
+          </h2>
+          <p class="meta">
+            {post.data.pubDate.toLocaleDateString('ja-JP')}
+          </p>
+          <p>{post.data.description}</p>
+        </li>
+      ))
+    }
+  </ul>
+  <p><a href={`${base}blog/`}>すべての記事を見る →</a></p>
+</BaseLayout>
