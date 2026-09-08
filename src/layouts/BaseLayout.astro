@@ -19,21 +19,25 @@ const base = import.meta.env.BASE_URL;
     <meta name="description" content={description} />
     <title>{title}</title>
   </head>
-  <body>
-    <header class="site-header">
-      <nav>
-        <a class="logo" href={base}>Astro学習ノート</a>
-        <span class="nav-links">
-          <a href={`${base}blog/`}>ブログ</a>
-          <a href={`${base}about/`}>About</a>
-        </span>
-      </nav>
-    </header>
-    <main>
-      <slot />
-    </main>
-    <footer class="site-footer">
-      <div>&copy; {new Date().getFullYear()} — Astroで学ぶ個人サイト</div>
-    </footer>
+  <body class="min-h-screen bg-canvas text-slate-800 antialiased">
+    <div class="mx-auto grid max-w-5xl grid-cols-4 gap-4 px-4 sm:grid-cols-8 sm:px-6 lg:grid-cols-12 lg:px-8">
+      <header class="col-span-full flex items-center justify-between border-b border-slate-200 py-5">
+        <a href={base} class="text-lg font-bold tracking-tight text-slate-900">
+          Astro<span class="text-accent-600">学習</span>ノート
+        </a>
+        <nav class="flex gap-6 text-sm font-medium text-slate-600">
+          <a href={`${base}blog/`} class="transition-colors hover:text-accent-700">ブログ</a>
+          <a href={`${base}about/`} class="transition-colors hover:text-accent-700">About</a>
+        </nav>
+      </header>
+
+      <main class="col-span-full py-10">
+        <slot />
+      </main>
+
+      <footer class="col-span-full border-t border-slate-200 py-6 text-sm text-slate-500">
+        &copy; {new Date().getFullYear()} — Astroで学ぶ個人サイト
+      </footer>
+    </div>
   </body>
 </html>

@@ -8,6 +8,7 @@ Astroの勉強のために作ったブログサイトです。GitHub Pagesへの
 - 共通レイアウト(`src/layouts/BaseLayout.astro`)によるヘッダー・フッターの共通化
 - 動的ルーティング(`src/pages/blog/[...slug].astro`)によるブログ記事詳細ページ
 - GitHub Actions(`.github/workflows/deploy.yml`)による自動デプロイ
+- [Tailwind CSS v4](https://tailwindcss.com/)(`@tailwindcss/vite`)による12列グリッドのデザイン。キーカラーはグリーン、背景は`#fafafa`(`src/styles/global.css`の`@theme`で定義)
 
 ## コマンド
 
